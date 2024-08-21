@@ -21,7 +21,7 @@ export const ScreenLayoutInner = () => {
   return (
     <div
       style={{ backgroundColor: layoutColor, fontFamily: fontType }}
-      className="rounded shadow-md min-h-screen w-screen p-2 mt-1"
+      className="rounded shadow-md h-screen w-screen"
     >
       <Switch>
         <Route path={Pages[0].path}>

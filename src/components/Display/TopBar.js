@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
 import Toolbar from "@mui/material/Toolbar";
@@ -15,6 +15,9 @@ import AdbIcon from "@mui/icons-material/Adb";
 import logo from "Images/logo.png";
 import Cookies from "universal-cookie";
 import Fade from "@mui/material/Fade";
+import Slide from "@mui/material/Slide";
+import Logo2 from "Images/Logo2.png";
+import LogoG from "Images/LogoG.png";
 import {
   Background1,
   Background2,
@@ -23,12 +26,48 @@ import {
 } from "components/Display/feutures";
 const cookies = new Cookies();
 
-const pages = ["HighSites", "Nodes"];
-const settings = ["Account", "Dashboard", "Logout"];
+const pages = [
+  "HOME",
+  "ABOUT US",
+  "WHAT WE DO",
+  "PORTAL",
+  "MEDIA",
+  "EVENTS",
+  "HOW TO",
+  "CONTACT US",
+];
 
 export const TopBar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
+  const [TopBarOn, setTopBarOn] = useState(false);
+  const [TopBarOff, setTopBarOff] = useState(false);
+
+  const [y, setY] = useState(window.scrollY);
+
+  const handleNavigation = useCallback(
+    (e) => {
+      const window = e.currentTarget;
+      if (y > window.scrollY) {
+        setTopBarOn(false);
+        setTopBarOff(true);
+      } else if (y < window.scrollY) {
+        setTopBarOn(true);
+        setTopBarOff(false);
+      }
+      setY(window.scrollY);
+    },
+    [y]
+  );
+
+  useEffect(() => {
+    setY(window.scrollY);
+    window.addEventListener("scroll", handleNavigation);
+
+    return () => {
+      window.removeEventListener("scroll", handleNavigation);
+    };
+  }, [handleNavigation]);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -44,152 +83,180 @@ export const TopBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
   return (
-    <div>
-      <AppBar
-        position="sticky"
-        sx={{
-          backgroundColor: Background2,
-          opacity: "100%",
-          maxHeight: "4rem",
-        }}
-      >
-        <Container maxWidth="false">
-          <Toolbar disableGutters>
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="/"
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              <Fade in={true} timeout={600}>
-                <img width={130} src={logo} alt={logo} />
-              </Fade>
-            </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{
-                  display: { xs: "block", md: "none" },
-                }}
-              >
-                <div className="grid grid-flow-rown gap-1">
-                  {pages.map((page) => (
-                    <Button key={page} href={page} onClick={handleCloseNavMenu}>
-                      <div sx={{ fontFamily: fontType }}>{page}</div>
-                    </Button>
-                  ))}
-                </div>
-              </Menu>
-            </Box>
-            <Typography
-              variant="h5"
-              noWrap
-              component="a"
-              href="#app-bar-with-responsive-menu"
-              sx={{
-                mr: 2,
-                display: { xs: "flex", md: "none" },
-                flexGrow: 1,
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              <Fade in={true} timeout={600}>
-                <img style={{ maxWidth: "100pt" }} src={logo} alt={logo} />
-              </Fade>
-            </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {pages.map((page) => (
-                <Button
-                  key={page}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                  href={page}
-                >
-                  <div className="font-sans font-bold text-sm">{page}</div>
-                </Button>
-              ))}
-            </Box>
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar
-                    sx={{ bgcolor: "#5c5a5a" }}
-                    alt={cookies.get("Username")}
-                    src="/static/images/avatar/2.jpg"
-                  />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {settings.map((setting) => (
-                  <MenuItem
-                    key={setting}
-                    onClick={handleCloseUserMenu}
-                    href={setting}
+    <>
+      {TopBarOn ? (
+        <div>
+          <AppBar
+            position="fixed"
+            elevation={0}
+            sx={{
+              backgroundColor: Background2,
+              opacity: "100%",
+              maxHeight: "5rem",
+            }}
+          >
+            <Container maxWidth="false">
+              <Toolbar disableGutters>
+                <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+                  <IconButton
+                    size="large"
+                    aria-label="account of current user"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
+                    onClick={handleOpenNavMenu}
+                    color="inherit"
                   >
-                    <Button
-                      fullWidth="true"
-                      sx={{ color: "black" }}
-                      href={setting}
-                    >
-                      {setting}
-                    </Button>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
-          </Toolbar>
-        </Container>
-      </AppBar>
-    </div>
+                    <MenuIcon />
+                  </IconButton>
+                  <Menu
+                    id="menu-appbar"
+                    anchorEl={anchorElNav}
+                    anchorOrigin={{
+                      vertical: "bottom",
+                      horizontal: "left",
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "left",
+                    }}
+                    open={Boolean(anchorElNav)}
+                    onClose={handleCloseNavMenu}
+                    sx={{
+                      display: { xs: "block", md: "none" },
+                    }}
+                  >
+                    <div className="grid grid-flow-rown gap-1">
+                      {pages.map((page) => (
+                        <Button
+                          key={page}
+                          href={page}
+                          onClick={handleCloseNavMenu}
+                        >
+                          <div sx={{ fontFamily: fontType }}>
+                            <div
+                              style={{
+                                fontFamily: "Times New Roman Times serif",
+                              }}
+                            >
+                              {page}
+                            </div>
+                          </div>
+                        </Button>
+                      ))}
+                    </div>
+                  </Menu>
+                </Box>
+                <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+                  <Slide in={true} timeout={1200}>
+                    <img src={LogoG} />
+                  </Slide>
+                  {pages.map((page) => (
+                    <Fade direction="down" in={true} timeout={1200}>
+                      <Button
+                        key={page}
+                        sx={{ my: 2, color: "white", display: "block" }}
+                        href={page}
+                      >
+                        <div className="font-sans font-bold text-sm">
+                          {page}
+                        </div>
+                      </Button>
+                    </Fade>
+                  ))}
+                </Box>
+              </Toolbar>
+            </Container>
+          </AppBar>
+        </div>
+      ) : (
+        <Fade in={true} timeout={1200}>
+          <AppBar
+            position="fixed"
+            elevation={0}
+            sx={{
+              backgroundColor: "transparent",
+              opacity: "100%",
+              maxHeight: "5rem",
+            }}
+          >
+            <Container maxWidth="false">
+              <Toolbar disableGutters>
+                <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+                  <IconButton
+                    size="large"
+                    aria-label="account of current user"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
+                    onClick={handleOpenNavMenu}
+                    color="inherit"
+                  >
+                    <MenuIcon />
+                  </IconButton>
+                  <Menu
+                    id="menu-appbar"
+                    anchorEl={anchorElNav}
+                    anchorOrigin={{
+                      vertical: "bottom",
+                      horizontal: "left",
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "left",
+                    }}
+                    open={Boolean(anchorElNav)}
+                    onClose={handleCloseNavMenu}
+                    sx={{
+                      display: { xs: "block", md: "none" },
+                    }}
+                  >
+                    <div className="grid grid-flow-rown gap-1">
+                      {pages.map((page) => (
+                        <Button
+                          key={page}
+                          href={page}
+                          onClick={handleCloseNavMenu}
+                        >
+                          <div sx={{ fontFamily: fontType }}>
+                            <div
+                              style={{
+                                fontFamily: "Times New Roman Times serif",
+                              }}
+                            >
+                              {page}
+                            </div>
+                          </div>
+                        </Button>
+                      ))}
+                    </div>
+                  </Menu>
+                </Box>
+                <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+                  <Slide direction="down" in={true} timeout={1200}>
+                    <img src={Logo2} />
+                  </Slide>
+                  {pages.map((page) => (
+                    <Fade in={true} timeout={1200}>
+                      <Button
+                        key={page}
+                        sx={{ my: 2, color: "white", display: "block" }}
+                        href={page}
+                      >
+                        <div className="font-sans font-bold text-sm">
+                          {page}
+                        </div>
+                      </Button>
+                    </Fade>
+                  ))}
+                </Box>
+              </Toolbar>
+            </Container>
+          </AppBar>
+        </Fade>
+      )}
+    </>
   );
 };

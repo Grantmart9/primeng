@@ -45,7 +45,7 @@ export const PopoverStyle = {
 };
 
 export const Background1 = "#f0eded";
-export const Background2 = "#424242";
+export const Background2 = "#449aa6";
 //export const Background1 = "#ddfad4";
 //export const Background2 = "#d4f7fa";
 
