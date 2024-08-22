@@ -60,7 +60,7 @@ export const Login = ({ setJWT }) => {
         class="video-content"
         style={{ position: "fixed", top: "80%", right: "5%" }}
       >
-        <Button href="Dashboard" >
+        <Button href="Register" >
           <img src={Apply} width="70%" />
         </Button>
       </div>

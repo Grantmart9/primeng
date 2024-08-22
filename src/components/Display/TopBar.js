@@ -171,7 +171,7 @@ export const TopBar = () => {
                   </div>
                   <Box sx={{ my: 1.75 }}>
                     <Fade in={true} timeout={1200}>
-                      <Button sx={{ color: "white" }} href="/Registration">
+                      <Button sx={{ color: "white" }} href="/Login">
                         Login
                       </Button>
                     </Fade>
@@ -266,7 +266,7 @@ export const TopBar = () => {
                   </div>
                   <Box sx={{ my: 1.75 }}>
                     <Fade in={true} timeout={1200}>
-                      <Button sx={{ color: "white" }} href="/Registration">
+                      <Button sx={{ color: "white" }} href="/Login">
                         Login
                       </Button>
                     </Fade>

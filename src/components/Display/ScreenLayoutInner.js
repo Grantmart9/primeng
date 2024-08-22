@@ -10,9 +10,9 @@ import { layoutColor, fontType } from "components/Display/feutures";
 
 const Pages = [
   { page: Nodes, path: "/Nodes" },
-  { page: HighSites, path: "/Registration" },
+  { page: HighSites, path: "/Login" },
   { page: Account, path: "/Account" },
-  { page: Dashboard, path: "/Dashboard" },
+  { page: Dashboard, path: "/Register" },
   { page: Settings, path: "/Settings" },
   { page: Login, path: "/" },
 ];
@@ -21,7 +21,7 @@ export const ScreenLayoutInner = () => {
   return (
     <div
       style={{ backgroundColor: layoutColor, fontFamily: fontType }}
-      className=" rounded shadow-md h-screen w-screen"
+      className="rounded shadow-md h-screen w-screen"
     >
       <Switch>
         <Route path={Pages[0].path}>

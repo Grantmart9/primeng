@@ -1,204 +1,92 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Buttons } from "components/Buttons/Buttons";
+import React, { useState, useEffect } from "react";
 import { Size } from "media-query";
-//import Cookies from "universal-cookie";
-import { SearchBar } from "components/searchBar";
-import { Sheets, ConditionList } from "components/Data/Sheets";
-import { JobDetails } from "components/JobDetails";
-import { SearchResults } from "components/Tables/SearchResults";
 import Cookies from "universal-cookie";
-import Moment from "moment";
-import {
-  PopoverCamera,
-  PopoverSaved,
-  PopoverSubmitted,
-} from "components/PopOvers/Popovers";
-import { PreventativeSheet } from "components/Tables/Preventative";
-import { SelectedSheet, SheetButtons } from "components/CheckSheets";
-
+import TextField from "@mui/material/TextField";
+import sample3 from "Videos/sample3.mp4";
 const cookies = new Cookies();
 
-export const Nodes = () => {
-  const [QuestionSheet, setQuestionSheet] = useState(Sheets[0].Questions);
-  const [selectedSheet, setSelectedSheet] = useState(Sheets[0].Sheet);
-  const [ButtonStatus, setButtonStatus] = useState("Search");
-  const [Saved, setSaved] = useState(false);
-  const [Sheet, setSheet] = useState("Observation");
-  const [Camera, setCamera] = useState(false);
-  const [Submitted, setSubmitted] = useState(false);
-
-  const size = Size();
-  Moment.locale("en");
-
-  const handleOpen = () => setSaved(true);
-
-  const handleSubmit = () => setSubmitted(true);
-
-  const handleObservation = () => {
-    setSheet("Observation");
-    console.log(Sheet);
-  };
-  const handleRepair = () => {
-    setSheet("Repaired");
-    console.log(Sheet);
-  };
-
-  const handleClose = () => {
-    setSaved(false);
-    setSubmitted(false);
-    setCamera(false);
-  };
-
-  const handleAdd = () => {
-    setButtonStatus("Check_sheets");
-  };
-
-  const handleSearch = () => {
-    setButtonStatus("Search");
-  };
-
-  const handleSheet = (item) => {
-    setQuestionSheet(item.Questions);
-    setSelectedSheet(item.Sheet);
-    setButtonStatus("Check_sheets");
-  };
-
-  const handleMaintenance = () => {
-    setButtonStatus("Preventative");
-  };
-
-  const handleCamera = () => {
-    setCamera(true);
-  };
-
+const Reg = () => {
   return (
-    <div
-      style={{ backgroundColor: "#bfbfbf", padding: "5pt" }}
-      className="rounded-t-md rounded-b-md"
-    >
-      <div>
-        <div
-          style={{ color: "#da4540", font: "bold" }}
-          className="text-2xl font-bold font-sans flex align-center justify-center p-2 w-full"
-        >
-          Nodes
-        </div>
-        <div>
-          {ButtonStatus == "Check_sheets" ? (
-            <div>
-              {size == "XS" || size == "SM" || size == "MD" ? (
-                <div>
-                  <Buttons handleAdd={handleAdd} handleSearch={handleSearch} />
-                  <JobDetails />
-                  <SelectedSheet
-                    QuestionSheet={QuestionSheet}
-                    selectedSheet={selectedSheet}
-                    handleSubmit={handleSubmit}
-                    handleOpen={handleOpen}
-                    ConditionList={ConditionList}
-                    handleMaintenance={handleMaintenance}
-                    Sheets={Sheets}
-                    handleSheet={handleSheet}
-                    handleCamera={handleCamera}
-                  />
-                </div>
-              ) : (
-                <div>
-                  <div className="grid grid-flow-col gap-1">
-                    <Buttons
-                      handleAdd={handleAdd}
-                      handleSearch={handleSearch}
-                    />
-                    <JobDetails />
-                  </div>
-                  <SelectedSheet
-                    QuestionSheet={QuestionSheet}
-                    selectedSheet={selectedSheet}
-                    handleSubmit={handleSubmit}
-                    handleOpen={handleOpen}
-                    ConditionList={ConditionList}
-                    handleMaintenance={handleMaintenance}
-                    Sheets={Sheets}
-                    handleSheet={handleSheet}
-                    handleCamera={handleCamera}
-                  />
-                </div>
-              )}
-            </div>
-          ) : null}
-          {ButtonStatus == "Search" ? (
-            <div>
-              {size == "XS" || size == "SM" || size == "MD" ? (
-                <div>
-                  <Buttons handleAdd={handleAdd} handleSearch={handleSearch} />
-                  <SearchBar />
-                  <SearchResults />
-                </div>
-              ) : (
-                <div>
-                  <div className="grid grid-flow-col gap-1">
-                    <Buttons
-                      handleAdd={handleAdd}
-                      handleSearch={handleSearch}
-                    />
-                    <SearchBar />
-                  </div>
-                  <SearchResults />
-                </div>
-              )}
-            </div>
-          ) : null}
-          {ButtonStatus == "Preventative" ? (
-            <div>
-              {size == "XS" || size == "SM" || size == "MD" ? (
-                <div>
-                  <Buttons handleAdd={handleAdd} handleSearch={handleSearch} />
-                  <JobDetails />
-                  <SheetButtons
-                    handleMaintenance={handleMaintenance}
-                    Sheets={Sheets}
-                    handleSheet={handleSheet}
-                  />
-                  <PreventativeSheet
-                    Sheet={Sheet}
-                    SheetButtons={SheetButtons}
-                    handleObservation={handleObservation}
-                    handleRepair={handleRepair}
-                    handleSubmit={handleSubmit}
-                  />
-                </div>
-              ) : (
-                <div>
-                  <div className="grid grid-flow-col gap-1">
-                    <Buttons
-                      handleAdd={handleAdd}
-                      handleSearch={handleSearch}
-                      handleObservation={handleObservation}
-                      handleRepair={handleRepair}
-                    />
-                    <JobDetails />
-                  </div>
-                  <SheetButtons
-                    handleMaintenance={handleMaintenance}
-                    Sheets={Sheets}
-                    handleSheet={handleSheet}
-                  />
-                  <PreventativeSheet
-                    Sheet={Sheet}
-                    SheetButtons={SheetButtons}
-                    handleObservation={handleObservation}
-                    handleRepair={handleRepair}
-                    handleSubmit={handleSubmit}
-                  />
-                </div>
-              )}
-            </div>
-          ) : null}
-        </div>
-        <PopoverSaved Saved={Saved} handleClose={handleClose} />
-        <PopoverSubmitted Submitted={Submitted} handleClose={handleClose} />
-        <PopoverCamera Camera={Camera} handleClose={handleClose} />
+    <div style={{ position: "fixed",top:"30%" }}>
+      <div
+        style={{ backgroundColor: "#363535" }}
+        className="flex text-gray-light text-center justify-center p-1  max-w-3xl"
+      >
+        Registration Form
       </div>
+      <div
+        style={{ backgroundColor: "#363535", opacity: "100%" }}
+        className="bg-white max-w-3xl"
+      >
+        <div className=" grid grid-rows-4 gap-2 p-5 bg-white shadow-md mt-1">
+          <div className="grid grid-cols-2 gap-2">
+            <TextField
+              sx={{ bgcolor: "whitesmoke" }}
+              label="Programme Category"
+              size="small"
+            />
+            <TextField
+              sx={{ bgcolor: "whitesmoke" }}
+              label="Applying for Programme"
+              size="small"
+            />
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            <TextField
+              sx={{ bgcolor: "whitesmoke" }}
+              label="Company Registered Name"
+              size="small"
+            />
+            <TextField
+              sx={{ bgcolor: "whitesmoke" }}
+              label="Registration Number"
+              size="small"
+            />
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            <TextField
+              sx={{ bgcolor: "whitesmoke" }}
+              label="Contact Name"
+              size="small"
+            />
+            <TextField
+              sx={{ bgcolor: "whitesmoke" }}
+              label="Email Address"
+              size="small"
+            />
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            <TextField
+              sx={{ bgcolor: "whitesmoke" }}
+              label="Contact Number(s)"
+              size="small"
+            />
+            <TextField
+              sx={{ bgcolor: "whitesmoke" }}
+              label="Incubation Partner Code"
+              size="small"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const Nodes = () => {
+  const size = Size();
+  return (
+    <div className="flex align-center justify-center">
+      <video
+        style={{ position: "sticky", width: "100%", height: "100%" }}
+        autoPlay
+        loop
+        muted
+        id="Video"
+      >
+        <source src={sample3} type="video/mp4" />
+      </video>
+      <Reg />
     </div>
   );
 };
