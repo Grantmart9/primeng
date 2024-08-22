@@ -38,7 +38,6 @@ export const Login = ({ setJWT }) => {
       >
         <source src={sample} type="video/mp4" />
       </video>
-
       <video
         style={{ position: "sticky", width: "100%", height: "100%" }}
         autoPlay
@@ -59,9 +58,9 @@ export const Login = ({ setJWT }) => {
       </video>
       <div
         class="video-content"
-        style={{ position: "absolute", top: "80%", right: "5%" }}
+        style={{ position: "fixed", top: "80%", right: "5%" }}
       >
-        <Button href="Dashboard">
+        <Button href="Dashboard" >
           <img src={Apply} width="70%" />
         </Button>
       </div>
