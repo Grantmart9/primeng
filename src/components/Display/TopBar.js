@@ -153,17 +153,22 @@ export const TopBar = () => {
                   <Slide direction="down" in={true} timeout={1200}>
                     <img src={LogoG} />
                   </Slide>
-                  {pages.map((page) => (
-                    <Fade in={true} timeout={1200}>
-                      <Button
-                        key={page}
-                        sx={{ my: 2, color: "white", display: "block" }}
-                        href={page}
-                      >
-                        <div className="text-sm">{page}</div>
-                      </Button>
-                    </Fade>
-                  ))}
+                  <div className="grid grid-flow-col gap-1 mx-auto">
+                    {pages.map((page) => (
+                      <Fade in={true} timeout={1200}>
+                        <div>
+                          <Button
+                            key={page}
+                            maxHeight="30pt"
+                            sx={{ my: 2, color: "white", display: "block" }}
+                            href={page}
+                          >
+                            <div className="text-sm">{page}</div>
+                          </Button>
+                        </div>
+                      </Fade>
+                    ))}
+                  </div>
                   <Box sx={{ my: 1.75 }}>
                     <Fade in={true} timeout={1200}>
                       <Button sx={{ color: "white" }} href="/Registration">
@@ -243,17 +248,22 @@ export const TopBar = () => {
                   <Slide direction="down" in={true} timeout={1200}>
                     <img src={Logo2} />
                   </Slide>
-                  {pages.map((page) => (
-                    <Fade in={true} timeout={1200}>
-                      <Button
-                        key={page}
-                        sx={{ my: 2, color: "white", display: "block" }}
-                        href={page}
-                      >
-                        <div className="text-sm">{page}</div>
-                      </Button>
-                    </Fade>
-                  ))}
+                  <div className="grid grid-flow-col gap-1 mx-auto">
+                    {pages.map((page) => (
+                      <Fade in={true} timeout={1200}>
+                        <div>
+                          <Button
+                            key={page}
+                            maxHeight="30pt"
+                            sx={{ my: 2, color: "white", display: "block" }}
+                            href={page}
+                          >
+                            <div className="text-sm">{page}</div>
+                          </Button>
+                        </div>
+                      </Fade>
+                    ))}
+                  </div>
                   <Box sx={{ my: 1.75 }}>
                     <Fade in={true} timeout={1200}>
                       <Button sx={{ color: "white" }} href="/Registration">
