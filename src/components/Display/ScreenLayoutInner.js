@@ -10,7 +10,7 @@ import { layoutColor, fontType } from "components/Display/feutures";
 
 const Pages = [
   { page: Nodes, path: "/Nodes" },
-  { page: HighSites, path: "/HighSites" },
+  { page: HighSites, path: "/Registration" },
   { page: Account, path: "/Account" },
   { page: Dashboard, path: "/Dashboard" },
   { page: Settings, path: "/Settings" },
@@ -40,7 +40,7 @@ export const ScreenLayoutInner = () => {
           <Settings />
         </Route>
         <Route path={Pages[5].path}>
-          <Login />
+          <Login  />
         </Route>
       </Switch>
     </div>

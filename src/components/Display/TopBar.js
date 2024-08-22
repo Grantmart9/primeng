@@ -150,22 +150,27 @@ export const TopBar = () => {
                   </Menu>
                 </Box>
                 <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-                  <Slide in={true} timeout={1200}>
+                  <Slide direction="down" in={true} timeout={1200}>
                     <img src={LogoG} />
                   </Slide>
                   {pages.map((page) => (
-                    <Fade direction="down" in={true} timeout={1200}>
+                    <Fade in={true} timeout={1200}>
                       <Button
                         key={page}
                         sx={{ my: 2, color: "white", display: "block" }}
                         href={page}
                       >
-                        <div className="font-sans font-bold text-sm">
-                          {page}
-                        </div>
+                        <div className="text-sm">{page}</div>
                       </Button>
                     </Fade>
                   ))}
+                  <Box sx={{ my: 1.75 }}>
+                    <Fade in={true} timeout={1200}>
+                      <Button sx={{ color: "white" }} href="/Registration">
+                        Login
+                      </Button>
+                    </Fade>
+                  </Box>
                 </Box>
               </Toolbar>
             </Container>
@@ -245,12 +250,17 @@ export const TopBar = () => {
                         sx={{ my: 2, color: "white", display: "block" }}
                         href={page}
                       >
-                        <div className="font-sans font-bold text-sm">
-                          {page}
-                        </div>
+                        <div className="text-sm">{page}</div>
                       </Button>
                     </Fade>
                   ))}
+                  <Box sx={{ my: 1.75 }}>
+                    <Fade in={true} timeout={1200}>
+                      <Button sx={{ color: "white" }} href="/Registration">
+                        Login
+                      </Button>
+                    </Fade>
+                  </Box>
                 </Box>
               </Toolbar>
             </Container>

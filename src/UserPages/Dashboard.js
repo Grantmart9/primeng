@@ -14,22 +14,24 @@ export const Dashboard = () => {
       >
         Registration Form
       </div>
-      <div className="grid grid-rows-4 gap-1 p-5 bg-white shadow-md mt-1">
-        <div className="grid grid-cols-2 gap-1">
-          <TextField label="Programme Category" size="small" />
-          <TextField label="Applying for Programme" size="small" />
-        </div>
-        <div className="grid grid-cols-2 gap-1">
-          <TextField label="Company Registered Name" size="small" />
-          <TextField label="Registration Number" size="small" />
-        </div>
-        <div className="grid grid-cols-2 gap-1">
-          <TextField label="Contact Name" size="small" />
-          <TextField label="Email Address" size="small" />
-        </div>
-        <div className="grid grid-cols-2 gap-1">
-          <TextField label="Contact Number(s)" size="small" />
-          <TextField label="Incubation Partner Code" size="small" />
+      <div className="bg-white shadow-md">
+        <div className=" grid grid-rows-4 gap-1 p-5 bg-white shadow-md mt-1">
+          <div className="grid grid-cols-2 gap-1">
+            <TextField label="Programme Category" size="small" />
+            <TextField label="Applying for Programme" size="small" />
+          </div>
+          <div className="grid grid-cols-2 gap-1">
+            <TextField label="Company Registered Name" size="small" />
+            <TextField label="Registration Number" size="small" />
+          </div>
+          <div className="grid grid-cols-2 gap-1">
+            <TextField label="Contact Name" size="small" />
+            <TextField label="Email Address" size="small" />
+          </div>
+          <div className="grid grid-cols-2 gap-1">
+            <TextField label="Contact Number(s)" size="small" />
+            <TextField label="Incubation Partner Code" size="small" />
+          </div>
         </div>
       </div>
     </div>
